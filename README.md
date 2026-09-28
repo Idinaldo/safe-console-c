@@ -10,6 +10,6 @@
 Para rodar a aplicação, basta ter o compilador `gcc`. Com ele pronto, rode os seguintes comandos:
 
 ```bash
-gcc safe.c general.c modone.c -o app
+gcc safe.c general.c modone.c options.c -o app
 ./app
 ```
