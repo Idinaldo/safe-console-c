@@ -5,5 +5,6 @@ extern char options[][50];
 extern char options_module_1[][50];
 extern char options_module_2[][50];
 extern char options_module_3[][50];
-
+extern char history[255][100];
+extern int last_history_pos;
 #endif
