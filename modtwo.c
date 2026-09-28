@@ -1,5 +1,6 @@
 #include "options.h"
 #include "general.h"
+#include "modthree.h"
 #include <stdio.h>
 
 void cipher(char *buffer, int size, short isCaesar);
@@ -17,6 +18,7 @@ int encryption_menu(char *buffer, int size)
             {
                 printf("%c", buffer[i]);
             }
+            add_log("Caesar's Cipher");
             break;
         
         case 2:
@@ -26,6 +28,7 @@ int encryption_menu(char *buffer, int size)
             {
                 printf("%02x", buffer[i]);
             }
+            add_log("Stream Cipher");
             break;
     }
     printf("\n");
@@ -68,6 +71,7 @@ void cipher(char *buffer, int size, short isCaesar)
         printf("Informe uma chave [1 char]: ");
         scanf("%c", &key);
     }
+    getchar();
     sgets(buffer, size, "Informe um texto: ");
 
     if (isCaesar)
