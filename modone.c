@@ -1,5 +1,8 @@
 #include "modone.h"
 #include "general.h"
+#include "options.h"
+#include <stdio.h>
+#include <string.h>
 
 void data_masking(char *data, int size)
 {
@@ -48,4 +51,54 @@ int validate_password(char *password, int size)
     {
         return 0;
     }
+}
+
+int sanitization_menu(char *buffer, int BUFFER_SIZE)
+{
+    int local_choice = menu(options_module_1, 4, "Sanitização e Validação");
+    printf("Você escolheu %s\n", options_module_1[local_choice - 1]);
+    
+    switch(local_choice)
+    {
+        case 1:
+            sgets(buffer, BUFFER_SIZE, "Digite seu texto: ");
+            printf("Seu texto seguro e tratado é: %s\n", buffer);
+            break;
+        case 2:
+            sgets(buffer, BUFFER_SIZE, "Digite seu dado: ");
+            data_masking(buffer, strlen(buffer));
+            printf("Seu dado mascarado é: %s\n", buffer);
+            break;
+        case 3:
+            sgets(buffer, BUFFER_SIZE, "Digite uma senha: ");
+            switch(validate_password(buffer, strlen(buffer)))
+            {
+                case 0:
+                    printf("Sua senha segue os padrões mínimos.\n");
+                    break;
+                    
+                case 1:
+                    printf("Sua senha precisa ter ao menos 8 caracteres.\n");
+                    break;
+
+                case 2:
+                    printf("Sua senha precisa ter ao menos uma letra minúscula.\n");
+                    break;
+                
+                case 3:
+                    printf("Sua senha precisa ter ao menos uma letra maiúscula.\n");
+                    break;
+
+                case 4:
+                    printf("Sua senha precisa ter ao menos um dígito numérico.\n");
+            }
+            break;
+        case 4:
+            printf("Voltando...\n");
+            break;
+    }
+    printf("Pressione enter...");
+    getchar();
+
+    return local_choice;
 }
