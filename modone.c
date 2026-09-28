@@ -1,4 +1,5 @@
 #include "modone.h"
+#include "modthree.h"
 #include "general.h"
 #include "options.h"
 #include <stdio.h>
@@ -63,11 +64,13 @@ int sanitization_menu(char *buffer, int BUFFER_SIZE)
         case 1:
             sgets(buffer, BUFFER_SIZE, "Digite seu texto: ");
             printf("Seu texto seguro e tratado é: %s\n", buffer);
+            add_log("Safe Read Text");
             break;
         case 2:
             sgets(buffer, BUFFER_SIZE, "Digite seu dado: ");
             data_masking(buffer, strlen(buffer));
-            printf("Seu dado mascarado é: %s\n", buffer);
+            printf("Seu dado mascarado é: %s\n", buffer);    
+            add_log("Masked Data");
             break;
         case 3:
             sgets(buffer, BUFFER_SIZE, "Digite uma senha: ");
@@ -92,6 +95,7 @@ int sanitization_menu(char *buffer, int BUFFER_SIZE)
                 case 4:
                     printf("Sua senha precisa ter ao menos um dígito numérico.\n");
             }
+            add_log("Validated password");
             break;
         case 4:
             printf("Voltando...\n");
