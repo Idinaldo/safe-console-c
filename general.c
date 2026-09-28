@@ -28,7 +28,6 @@ int menu(char (*options)[50], int size, char *title)
 
 void sgets(char *buffer, int size, char *input_message)
 {
-    getchar();
     printf("%s", input_message);
     
     fgets(buffer, size, stdin);
